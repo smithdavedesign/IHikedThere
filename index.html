@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <!-- Bootstrap core JavaScript jquery, ajax, bootstrap -->
+  <script src="styles/vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="styles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- JS scripts files -->
+  <script type="text/javascript" src="scripts/scripts.js"></script>
+
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,8 +22,54 @@
   <!-- Custom styles -->
   <link href="styles/css/style.css" rel="stylesheet">
 </head>
+<style>
+  #mydiv {
+  position: absolute;
+  z-index: 9;
+  min-width: 40%;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+}
+
+#mydivheader {
+  padding: 10px;
+  width: auto;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+</style>
 
 <body>
+
+
+  <div id="popUp">
+    <div id="mydiv">
+      <div id="mydivheader">Click here to move</div>
+      <div class="notecontainer">
+        <p>
+          <label for="new-task">Add Item</label><input id="new-task" type="text"><button id="notebutton">Add</button>
+        </p>
+
+        <h3>Todo</h3>
+        <ul id="incomplete-tasks">
+          <li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit" id="notebutton">Edit</button><button class="delete" id="notebutton">Delete</button></li>
+          <li class="editMode"><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+
+        </ul>
+
+        <h3>Completed</h3>
+        <ul id="completed-tasks">
+          <li><input type="checkbox" checked><label>See the Doctor</label><input type="text"><button class="edit" id="notebutton">Edit</button><button class="delete" id="notebutton">Delete</button></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
     <div class="container">
@@ -23,6 +77,11 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
@@ -30,21 +89,32 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+          <div class="btn-group dropup">
+            <li class="nav-item" id="contID">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                Continent
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropDownMenuID">
+                <a class="dropdown-item">Europe</a>
+                <a class="dropdown-item">Africa</a>
+                <a class="dropdown-item">North America</a>
+                <a class="dropdown-item">South America</a>
+                <a class="dropdown-item">Asia</a>
+                <a class="dropdown-item">Asia</a>
+                <a class="dropdown-item">Australia</a>
+                <a class="dropdown-item">Antartica</a>
+                <a class="dropdown-item">Home</a>
+              </div>
+            </li>
+          </div>
+          <li class="nav-item" id="addNote">
+            <a class="nav-link">add a note</a>
           </li>
         </ul>
+
       </div>
-    </div>
   </nav>
   <!--End of Nav bar  -->
-
 
   <!-- Page Content -->
   <div class="map-container">
@@ -52,170 +122,418 @@
     </div>
   </div>
 
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="scripts/app.js"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="scripts/scripts.js"></script>
+  <!-- for the continent button clicked -->
+  <!-- <script>
+    var buttons = document.getElementsByClassName('dropdown-item');
+    for (var i = 0; i < buttons.length; i++) {
+      (function(index) {
+        buttons[index].onclick = function() {
+          alert("I am button " + index);
+        };
+      });
+    }
+  </script> -->
+  <!-- if (index == 1) { //Africa
+    alert("I am button " + index);
+  }
+  if (index == 2) { //North America
+    alert("I am button " + index);
+  }
+  if (index == 3) { //South America
+    alert("I am button " + index);
+  }
+  if (index == 4) { //Asia
+    alert("I am button " + index);
+  }
+  if (index == 5) { //Australia
+    alert("I am button " + index);
+  }
+  if (index === 6) { //Antartica
+    alert("I am button " + index);
+  }
+  if (index === 7) { //Home
+    alert("I am button " + index);
+  } -->
 
-  <!--Google maps Script  -->
+  <!-- end of continent click button -->
+
+
   <script>
-    function initMap() {
+    $(document).ready(function() {
+      $("#popUp").click(function() {
 
-      var myLatlng = {
-        lat: 38.544907,
-        lng: -121.740517
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $("#addNote").click(function() {
+        $('#mydiv').toggle();
+      });
+    });
+  </script>
+
+
+  <!-- MOVEING DIV FROM HERE!!!!!!!!!!! -->
+  <script>
+    //Make the DIV element draggagle:
+    dragElement(document.getElementById("mydiv"));
+
+    function dragElement(elmnt) {
+      var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+      if (document.getElementById(elmnt.id + "header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+      } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
       }
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
-        center: myLatlng,
-      });
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
+  <!-- MOVEING DIV END HERE!!!!!!!!!!! -->
 
 
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Click to zoom'
-      });
 
-      map.addListener('center_changed', function() {
-        // 3 seconds after the center of the map has changed, pan back to the
-        // marker.
-        window.setTimeout(function() {
-          map.panTo(marker.getPosition());
-        }, 3000);
-      });
+  <!--Google maps Script HERE!!!!!!!!!!!!!!!  -->
+  <script>
+    function initMap() {
+      //map options
+      var options = {
+        zoom: 8,
+        center: {
+          lat: 42.3601,
+          lng: -710589
+        }
+      }
 
-      marker.addListener('click', function() {
-        map.setZoom(8);
-        map.setCenter(marker.getPosition());
-      });
+      //new map
+      var map = new google.maps.Map(document.getElementById('map'), options);
 
+      //make clustor
+      makeClustor();
 
-      // Create an array of alphabetical characters used to label the markers.
-      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-      // Add some markers to the map.
-      // Note: The code uses the JavaScript Array.prototype.map() method to
-      // create an array of markers based on a given "locations" array.
-      // The map() method here has nothing to do with the Google Maps API.
-      var markers = locations.map(function(location, i) {
-        return new google.maps.Marker({
-          position: location,
-          label: labels[i % labels.length]
+      //listen for a click on the map
+      google.maps.event.addListener(map, 'click',
+        function(event) {
+          //add marker after click
+          addMarker({
+            coords: event.latLng
+          });
         });
-      });
+
+
+      //all the initial markers loaded up
+      var markers = [{
+          coords: {
+            lat: 42.4668,
+            lng: -70.9495
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: 22.4668,
+            lng: -70.9495
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: 32.4668,
+            lng: -70.9495
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -31.563910,
+            lng: 147.154312
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -33.718234,
+            lng: 150.363181
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -33.727111,
+            lng: 150.371124
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -33.848588,
+            lng: 151.209834
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -33.851702,
+            lng: 151.216968
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -34.671264,
+            lng: 150.863657
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -35.304724,
+            lng: 148.662905
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -36.817685,
+            lng: 175.699196
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -36.828611,
+            lng: 175.790222
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -37.750000,
+            lng: 145.116667
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -37.759859,
+            lng: 145.128708
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        },
+        {
+          coords: {
+            lat: -37.765015,
+            lng: 145.133858
+          },
+          iconImage: 'img/home.png',
+          content: '<h2> Nice choice beez</h2>'
+        }
+      ];
+
+
+      //loop through markers
+      for (var i = 0; i < markers.length; i++) {
+        //add markers to the map
+        addMarker(markers[i]);
+      }
+
+      //add marker function
+      function addMarker(props) {
+        var marker = new google.maps.Marker({
+          position: props.coords,
+          map: map,
+        });
+        //check for custom icom
+        if (props.iconImage) {
+          //set icon image
+          marker.setIcon(props.iconImage);
+        }
+        //check label of marker
+        if (props.content) {
+          var InfoWindow = new google.maps.InfoWindow({
+            content: props.content
+          });
+        }
+      }
+
+
+      function makeClustor(){
+        //locations in clustor
+        var locations = [{
+            lat: -31.563910,
+            lng: 147.154312
+          },
+          {
+            lat: -33.718234,
+            lng: 150.363181
+          },
+          {
+            lat: -33.727111,
+            lng: 150.371124
+          },
+          {
+            lat: -33.848588,
+            lng: 151.209834
+          },
+          {
+            lat: -33.851702,
+            lng: 151.216968
+          },
+          {
+            lat: -34.671264,
+            lng: 150.863657
+          },
+          {
+            lat: -35.304724,
+            lng: 148.662905
+          },
+          {
+            lat: -36.817685,
+            lng: 175.699196
+          },
+          {
+            lat: -36.828611,
+            lng: 175.790222
+          },
+          {
+            lat: -37.750000,
+            lng: 145.116667
+          },
+          {
+            lat: -37.759859,
+            lng: 145.128708
+          },
+          {
+            lat: -37.765015,
+            lng: 145.133858
+          },
+          {
+            lat: -37.770104,
+            lng: 145.143299
+          },
+          {
+            lat: -37.773700,
+            lng: 145.145187
+          },
+          {
+            lat: -37.774785,
+            lng: 145.137978
+          },
+          {
+            lat: -37.819616,
+            lng: 144.968119
+          },
+          {
+            lat: -38.330766,
+            lng: 144.695692
+          },
+          {
+            lat: -39.927193,
+            lng: 175.053218
+          },
+          {
+            lat: -41.330162,
+            lng: 174.865694
+          },
+          {
+            lat: -42.734358,
+            lng: 147.439506
+          },
+          {
+            lat: -42.734358,
+            lng: 147.501315
+          },
+          {
+            lat: -42.735258,
+            lng: 147.438000
+          },
+          {
+            lat: -43.999792,
+            lng: 170.463352
+          }
+        ]
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
 
       // Add a marker clusterer to manage the markers.
       var markerCluster = new MarkerClusterer(map, markers, {
         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
       });
+    }
 
-      var locations = [{
-          lat: -31.563910,
-          lng: 147.154312
-        },
-        {
-          lat: -33.718234,
-          lng: 150.363181
-        },
-        {
-          lat: -33.727111,
-          lng: 150.371124
-        },
-        {
-          lat: -33.848588,
-          lng: 151.209834
-        },
-        {
-          lat: -33.851702,
-          lng: 151.216968
-        },
-        {
-          lat: -34.671264,
-          lng: 150.863657
-        },
-        {
-          lat: -35.304724,
-          lng: 148.662905
-        },
-        {
-          lat: -36.817685,
-          lng: 175.699196
-        },
-        {
-          lat: -36.828611,
-          lng: 175.790222
-        },
-        {
-          lat: -37.750000,
-          lng: 145.116667
-        },
-        {
-          lat: -37.759859,
-          lng: 145.128708
-        },
-        {
-          lat: -37.765015,
-          lng: 145.133858
-        },
-        {
-          lat: -37.770104,
-          lng: 145.143299
-        },
-        {
-          lat: -37.773700,
-          lng: 145.145187
-        },
-        {
-          lat: -37.774785,
-          lng: 145.137978
-        },
-        {
-          lat: -37.819616,
-          lng: 144.968119
-        },
-        {
-          lat: -38.330766,
-          lng: 144.695692
-        },
-        {
-          lat: -39.927193,
-          lng: 175.053218
-        },
-        {
-          lat: -41.330162,
-          lng: 174.865694
-        },
-        {
-          lat: -42.734358,
-          lng: 147.439506
-        },
-        {
-          lat: -42.734358,
-          lng: 147.501315
-        },
-        {
-          lat: -42.735258,
-          lng: 147.438000
-        },
-        {
-          lat: -43.999792,
-          lng: 170.463352
-        }
-      ]
     }
   </script>
 
-
   <!-- Importing google librarys ...MARKERCLUSTER.....Note: add coma to add more librarys at the end of sctript -->
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
   <!-- API KEY GOOGLE MAPS: AIzaSyAbmwSaBUQ-qEG_JbVQ8XcSO-D9wfnCmak  -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmwSaBUQ-qEG_JbVQ8XcSO-D9wfnCmak
-&callback=initMap" async defer></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmwSaBUQ-qEG_JbVQ8XcSO-D9wfnCmak&callback=initMap"></script>
   <!-- End Google Map scripts -->
-
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 </body>
 
 </html>

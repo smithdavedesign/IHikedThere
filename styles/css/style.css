@@ -103,9 +103,27 @@ html, body {
   position: relative;
 }
 #dropDownMenuID{
-  min-width: 1rem
-   position: absoulute
+  min-width: 1rem;
+   position: absoulute;
 
+}
+
+#geoDiv{
+  z-index: 655;
+  min-height: 400px;
+  max-height: 400px;
+  height: 100%;
+}
+.addressDetails{
+    z-index: 99;
+    position: absolute;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    left: 10%;
+    width: auto;
+    cursor: move;
 }
 
 /* end Not pop up that moves  */
